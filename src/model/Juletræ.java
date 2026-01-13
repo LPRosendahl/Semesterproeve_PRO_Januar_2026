@@ -80,22 +80,20 @@ public class Juletræ {
         }
     }
 
-    public double prisPåDato(ArrayList<PeriodePris> periodePrises, LocalDate salgsDato) {
-        double pris = 0;
-        int index = -1;
+    public double prisPåDato(LocalDate salgsDato) {
+        double pris = -1;
         int i = 0;
-        try {
-            while (index == -1 && i < periodePrises.size()) {
-                PeriodePris dato = periodePrises.get(i);
-                if (!dato.getFraDato().isAfter(salgsDato) && !dato.getTilDato().isBefore(salgsDato)) {
-                    index = i;
-                    pris = dato.getPris();
-                } else {
-                    i++;
-                }
+        while (pris == -1 && i < periodePriser.size()) {
+            PeriodePris p = periodePriser.get(i);
+            if (!salgsDato.isBefore(p.getFraDato()) && !salgsDato.isAfter(p.getTilDato())) {
+                pris = p.getPris();
+            } else {
+                i++;
             }
-        } catch (RuntimeException e) {
-            throw new RuntimeException(e);
+        }
+
+        if (pris == -1) {
+            throw new RuntimeException("Der findes ingen pris for juletræet på datoen: " + salgsDato);
         }
         return pris;
     }

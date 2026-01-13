@@ -44,4 +44,26 @@ public class Salg {
             salgslinjer.remove(salgslinje);
         }
     }
+
+    public double prisExclusivFragt() {
+        double prisExclusivFragt = 0;
+        for (Salgslinje salgslinje : salgslinjer) {
+            prisExclusivFragt += salgslinje.getSalgslinjePris();
+        }
+        return prisExclusivFragt;
+    }
+
+    public double prisInclusivFragt() {
+        double fragtPris = 0;
+        int antalPrPalle = 0;
+        int antalKøbteJuletræer = 0;
+
+        for (Salgslinje salgslinje : salgslinjer) {
+            antalPrPalle = salgslinje.getJuletræ().getAntalPrPalle();
+            antalKøbteJuletræer = salgslinje.getAntal();
+            fragtPris = salgslinje.getJuletræ().getJuletræsGrossist().getFragtPrisPrPalle();
+        }
+
+        return antalKøbteJuletræer / antalPrPalle * fragtPris + prisExclusivFragt();
+    }
 }

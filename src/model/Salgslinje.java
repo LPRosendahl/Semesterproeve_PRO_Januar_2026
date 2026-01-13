@@ -41,14 +41,9 @@ public class Salgslinje {
     }
 
     //----- HJÆLPE METODER -----
-//    public double getSalgslinjePris(ArrayList<PeriodePris> periodePris) {
-//        double samletPris = antal * juletræ.prisPåDato(periodePris, ) - (antal * antaltRabatPrTræ);
-//
-//        // samletPris = antal * pris - (antal * antalRabatPåTræ);
-//
-//
-//        return samletPris;
-//    }
+    public double getSalgslinjePris() {
+        return antal * juletræ.prisPåDato(salg.getSalgsDato()) - (antal * antaltRabatPrTræ);
+    }
 
 
 }
