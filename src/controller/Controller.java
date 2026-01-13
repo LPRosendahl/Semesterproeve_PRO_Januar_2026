@@ -60,7 +60,6 @@ public class Controller {
     }
 
 
-    // Hvis der er en opgave hvor man skal skrive til en tekstfil
     public void gemJuletræsInfoTilFil(String filnavn) {
         try (PrintWriter writer = new PrintWriter(new File(filnavn))) {
             // for-loop her
